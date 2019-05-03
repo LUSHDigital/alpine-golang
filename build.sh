@@ -6,6 +6,7 @@ LATEST_TAG=$(git describe --tags ${LATEST_TAG_COMMIT} 2>/dev/null)
 
 go build \
     -o build/service \
+    -mod=vendor \
     -ldflags "
         -X main.revision=${CURRENT_REVISION}
         -X main.version=${LATEST_TAG}
