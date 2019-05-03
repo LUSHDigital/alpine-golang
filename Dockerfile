@@ -1,10 +1,9 @@
 FROM golang:1-alpine
 RUN apk add git
 
+# The build script contains everything you need for building the service/ directory in your project.
+COPY build.sh /build.sh
+
 ONBUILD WORKDIR /repo
 ONBUILD COPY . .
-ONBUILD RUN go build \
-    -o build/service \
-    -mod=vendor \
-    -ldflags "-X main.revision=$(git rev-parse --verify HEAD)" \
-    service/*.go
+ONBUILD RUN /build.sh
