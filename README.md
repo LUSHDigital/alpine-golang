@@ -13,7 +13,7 @@ RUN ["build/service"]
 ```
 
 ## Using build variables in your Go code
-The image will build your projects with `-ldflags` setting two variables in your main package called `version` containing the very latest version tag of your tree and `revision` containing the current git commit hash.
+The image will build your projects with `-ldflags` setting two variables in your main package called `tag` containing the very latest version tag of your tree and `ref` containing the current git commit hash.
 
 ```go
 package main
@@ -23,13 +23,13 @@ import (
 )
 
 var (
-    version  string
-    revision string
+    tag  string
+    ref string
 )
 
 func main() {
     svc := &core.Service{
-        Version: version,
+        Version: tag,
     }
     svc.StartWorkers(context.Background())
 }

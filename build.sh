@@ -8,7 +8,7 @@ go build \
     -o build/service \
     -mod=vendor \
     -ldflags "
-        -X main.revision=${CURRENT_REVISION}
-        -X main.version=${LATEST_TAG}
+        -X main.ref=${CURRENT_REVISION}
+        -X main.tag=${LATEST_TAG}
     " \
     service/*.go
