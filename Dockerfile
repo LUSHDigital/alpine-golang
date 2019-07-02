@@ -5,7 +5,10 @@ RUN apk update && \
         tzdata \
         git
 
+ARG GOMODPROXY
+
 ENV CGO_ENABLED="0"
+ENV GOPROXY=${GOMODPROXY}
 
 # The build script contains everything you need for building the service/ directory in your project.
 COPY build.sh /build.sh
