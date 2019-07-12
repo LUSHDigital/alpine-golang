@@ -5,10 +5,12 @@ RUN apk update && \
         tzdata \
         git
 
+ARG GOTARGET="service/*.go"
 ARG GOMODPROXY
 
 ENV CGO_ENABLED="0"
 ENV GOPROXY=${GOMODPROXY}
+ENV GOTARGET=${GOTARGET}
 
 # The build script contains everything you need for building the service/ directory in your project.
 COPY build.sh /build.sh
