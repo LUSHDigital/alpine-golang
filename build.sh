@@ -11,4 +11,4 @@ go build \
         -X main.ref=${CURRENT_REVISION}
         -X main.tag=${LATEST_TAG}
     " \
-    service/*.go
+    ${GOTARGET}
