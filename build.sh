@@ -10,5 +10,7 @@ go build \
     -ldflags "
         -X main.ref=${CURRENT_REVISION}
         -X main.tag=${LATEST_TAG}
+        -X github.com/LUSHDigital/core.ref=${LATEST_TAG}
+        -X github.com/LUSHDigital/core.tag=${LATEST_TAG}
     " \
     ${GOTARGET}
