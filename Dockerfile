@@ -3,16 +3,19 @@ RUN apk update && \
     apk --no-cache add \
         ca-certificates \
         tzdata \
-        git
+        git \
+        upx
 
-ARG APPBIN="build/service"
-ARG GOTARGET="service/*.go"
-ARG GOMODPROXY
+ONBUILD ARG APPBIN="build/service"
+ONBUILD ENV APPBIN=${APPBIN}
+
+ONBUILD ARG GOTARGET="service/*.go"
+ONBUILD ENV GOTARGET=${GOTARGET}
+
+ONBUILD ARG GOPROXY
+ONBUILD ENV GOPROXY=${GOPROXY}
 
 ENV CGO_ENABLED="0"
-ENV GOPROXY=${GOMODPROXY}
-ENV GOTARGET=${GOTARGET}
-ENV APPBIN=${APPBIN}
 
 # The build script contains everything you need for building the service/ directory in your project.
 COPY build.sh /build.sh
