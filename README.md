@@ -18,19 +18,29 @@ The image will build your projects with `-ldflags` setting two variables in your
 ```go
 package main
 
-import (
-    "github.com/LUSHDigital/core"
-)
-
 var (
     tag  string
     ref string
 )
 
 func main() {
-    svc := &core.Service{
-        Version: tag,
-    }
-    svc.StartWorkers(context.Background())
+    ...
+}
+```
+
+## Using build variables in the LUSHDigital/core package
+This package will also use the build flags to interpolate the commit hash and latest version tag straight into the [LUSHDigital/core](https://github.com/LUSHDigital/core) package.
+
+```go
+package main
+
+import (
+    "github.com/LUSHDigital/core"
+)
+
+func main() {
+    // The service struct will now automatically contain the commit hash and latest version tag derived from the build flags.
+    service := core.NewService("example", "service")
+    ...
 }
 ```
