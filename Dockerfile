@@ -12,9 +12,15 @@ ENV CGO_ENABLED="0"
 ENV GOPROXY=${GOMODPROXY}
 ENV GOTARGET=${GOTARGET}
 
+# Vendor first to we can user Docker caching layer
+ONBUILD WORKDIR /repo
+ONBUILD COPY go.mod .
+ONBUILD COPY go.sum .
+
+ONBUILD RUN go mod download
+
 # The build script contains everything you need for building the service/ directory in your project.
 COPY build.sh /build.sh
 
-ONBUILD WORKDIR /repo
 ONBUILD COPY . .
 ONBUILD RUN /build.sh
