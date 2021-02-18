@@ -14,5 +14,3 @@ go build \
         -X github.com/LUSHDigital/core.tag=${LATEST_TAG}
     " \
     ${GOTARGET}
-
-upx -q ${APPBIN}
